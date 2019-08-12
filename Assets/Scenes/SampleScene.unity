@@ -633,6 +633,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1928256266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7570567190426136113, guid: 3509e647c87dd174b897cf177d0e0e2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7570567190934023509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &1928256270
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928256266}
+  m_Enabled: 1
 --- !u!1 &1987799419
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +888,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325539956064639631, guid: 6c673556184234a4e80f038e8385fd2f,
+        type: 3}
+      propertyPath: LuisAppId
+      value: 7ef1db2b-dd34-4165-b626-ffda9825f8d9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325539956064639631, guid: 6c673556184234a4e80f038e8385fd2f,
+        type: 3}
+      propertyPath: LuisEndpointKey
+      value: 69ce29ff0b6e42ee9b0eb3836aab375e
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c673556184234a4e80f038e8385fd2f, type: 3}
