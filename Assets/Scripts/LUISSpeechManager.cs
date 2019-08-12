@@ -115,12 +115,21 @@ public class LUISSpeechManager : Singleton<LUISSpeechManager>
 
     private void ProcessIntent()
     {
+        Entity target = null;
+
         switch (result.topScoringIntent.intent)
         {
             case "changeColor":
-                SpeechManager.Instance.ChangeColor(result.entities.First(e => e.type == "object").entity, result.entities.First(e => e.type == "color").entity);
+                target = result.entities.FirstOrDefault(e => e.type == "object");
+                var color = result.entities.FirstOrDefault(e => e.type == "color");
+                if (target != null && color != null)
+                    SpeechManager.Instance.ChangeColor(target.entity, color.entity);
                 break;
             case "moveObject":
+                target = result.entities.FirstOrDefault(e => e.type == "object");
+                var direction = result.entities.FirstOrDefault(e => e.type == "direction");
+                if (target != null && direction != null)
+                    SpeechManager.Instance.Move(target.entity, direction.entity);
                 break;
             default:
                 break;
