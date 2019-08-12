@@ -1,8 +1,12 @@
-﻿using Microsoft.CognitiveServices.Speech;
+﻿using IntentRecognitionResults;
+using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Intent;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using TinyJson;
 using UnityEngine;
 
 public class LUISSpeechManager : Singleton<LUISSpeechManager>
@@ -15,13 +19,28 @@ public class LUISSpeechManager : Singleton<LUISSpeechManager>
     
     private SpeechConfig luisConfig;
     private IntentRecognizer recognizer;
+    private IntentResult result = null;
+    private bool readyToProcess = false;
 
     private void Start()
     {
         luisConfig = SpeechConfig.FromSubscription(LuisEndpointKey, LuisRegion);
         luisConfig.SpeechRecognitionLanguage = LuisLanguage;
+    }
 
+    public void StartIntentRecognition()
+    {
         RecognizeIntentAsync();
+    }
+    public void StopRecognition()
+    {
+        StopIntentRecognition();
+    }
+
+    private void Update()
+    {
+        if (readyToProcess)
+            ProcessIntent();
     }
 
     private async void RecognizeIntentAsync()
@@ -34,11 +53,6 @@ public class LUISSpeechManager : Singleton<LUISSpeechManager>
         recognizer.AddIntent(model, "moveObject", "moveObject");
 
         // add event handlers
-        recognizer.SessionStarted += (s, e) => { Debug.Log("Session Started"); };
-        recognizer.SessionStopped += (s, e) => { Debug.Log("Session Stopped"); };
-        recognizer.SpeechStartDetected += (s, e) => { Debug.Log("Speech Start Detected"); };
-        recognizer.SpeechEndDetected += (s, e) => { Debug.Log("Speech End Detected"); };
-
         recognizer.Recognized += Recognizer_Recognized;
         recognizer.Recognizing += Recognizer_Recognizing;
         recognizer.Canceled += Recognizer_Canceled;
@@ -50,6 +64,8 @@ public class LUISSpeechManager : Singleton<LUISSpeechManager>
 
     private void Recognizer_Canceled(object sender, IntentRecognitionCanceledEventArgs e)
     {
+        readyToProcess = false;
+
         var cancellation = CancellationDetails.FromResult(e.Result);
         Debug.Log($"CANCELED: Reason={cancellation.Reason}");
 
@@ -63,6 +79,7 @@ public class LUISSpeechManager : Singleton<LUISSpeechManager>
 
     private void Recognizer_Recognizing(object sender, IntentRecognitionEventArgs e)
     {
+        readyToProcess = false;
         Debug.Log($"Recognizing: {e.Result.Text}");
     }
 
@@ -72,17 +89,45 @@ public class LUISSpeechManager : Singleton<LUISSpeechManager>
         {
             Debug.Log($"RECOGNIZED: Text={e.Result.Text}");
             Debug.Log($"    Intent Id: {e.Result.IntentId}.");
-            Debug.Log($"    Language Understanding JSON: {e.Result.Properties.GetProperty(PropertyId.LanguageUnderstandingServiceResponse_JsonResult)}.");
+
+            string json = e.Result.Properties.GetProperty(PropertyId.LanguageUnderstandingServiceResponse_JsonResult);
+
+            Debug.Log($"    Language Understanding JSON: {json}.");
+
+            result = json.FromJson<IntentResult>();
+            if (result != null)
+            {
+                readyToProcess = true;
+            }
         }
         else if (e.Result.Reason == ResultReason.RecognizedSpeech)
         {
+            readyToProcess = false;
             Debug.Log($"RECOGNIZED: Text={e.Result.Text}");
             Debug.Log($"    Intent not recognized.");
         }
         else if (e.Result.Reason == ResultReason.NoMatch)
         {
+            readyToProcess = false;
             Debug.Log($"NOMATCH: Speech could not be recognized.");
         }
+    }
+
+    private void ProcessIntent()
+    {
+        switch (result.topScoringIntent.intent)
+        {
+            case "changeColor":
+                SpeechManager.Instance.ChangeColor(result.entities.First(e => e.type == "object").entity, result.entities.First(e => e.type == "color").entity);
+                break;
+            case "moveObject":
+                break;
+            default:
+                break;
+        }
+
+        readyToProcess = false;
+        result = null;
     }
 
     void OnDisable()

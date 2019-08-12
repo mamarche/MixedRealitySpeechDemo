@@ -13,13 +13,11 @@ public class ObjectBehaviour : MonoBehaviour
 {
     public ObjectTypes ObjectType;
 
-    private Transform _transform;
-    private MeshRenderer _renderer;
+    private Renderer _renderer;
 
     private void Awake()
     {
-        _transform = GetComponent<Transform>();
-        _renderer = GetComponent<MeshRenderer>();
+        _renderer = GetComponent<Renderer>();
     }
 
     public void ChangeColor(Color newColor)
@@ -29,7 +27,7 @@ public class ObjectBehaviour : MonoBehaviour
 
     public void Move(Vector3 movement)
     {
-        _transform.position += movement;
+        transform.position += movement;
     }
 
     // Update is called once per frame
@@ -38,10 +36,10 @@ public class ObjectBehaviour : MonoBehaviour
         switch (ObjectType)
         {
             case ObjectTypes.Cube:
-                _transform.Rotate(0f, 50f * Time.deltaTime, 0f);
+                transform.Rotate(0f, 50f * Time.deltaTime, 0f);
                 break;
             case ObjectTypes.Cylinder:
-                _transform.Rotate(50f * Time.deltaTime, 0f, 0f);
+                transform.Rotate(50f * Time.deltaTime, 0f, 0f);
                 break;
             case ObjectTypes.Sphere:
 
