@@ -31,15 +31,78 @@ MonoBehaviour:
       description: Select
       axisConstraint: 2
   - localizationKey: 
-    keyword: color red
+    keyword: change color
     keyCode: 288
     action:
       id: 0
       description: Select
       axisConstraint: 2
   - localizationKey: 
-    keyword: color blue
+    keyword: move
     keyCode: 290
+    action:
+      id: 0
+      description: Select
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: cube
+    keyCode: 0
+    action:
+      id: 0
+      description: Select
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: sphere
+    keyCode: 0
+    action:
+      id: 0
+      description: Select
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: cylinder
+    keyCode: 0
+    action:
+      id: 0
+      description: Select
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: red
+    keyCode: 0
+    action:
+      id: 0
+      description: Select
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: yellow
+    keyCode: 0
+    action:
+      id: 0
+      description: Select
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: blue
+    keyCode: 0
+    action:
+      id: 0
+      description: Select
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: green
+    keyCode: 0
+    action:
+      id: 0
+      description: Select
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: to the left
+    keyCode: 0
+    action:
+      id: 0
+      description: Select
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: to the right
+    keyCode: 0
     action:
       id: 0
       description: Select
