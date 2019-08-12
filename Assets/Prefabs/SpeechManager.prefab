@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7570567190426136115}
   - component: {fileID: 7570567190426136114}
   - component: {fileID: 7570567190426136112}
-  - component: {fileID: 1467231281}
   m_Layer: 0
   m_Name: SpeechManager
   m_TagString: Untagged
@@ -67,7 +66,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: ChangeColor
           m_Mode: 1
           m_Arguments:
@@ -84,7 +84,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: MoveObject
           m_Mode: 1
           m_Arguments:
@@ -101,7 +102,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: SetCubeTarget
           m_Mode: 1
           m_Arguments:
@@ -118,7 +120,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: SetCylinderTarget
           m_Mode: 1
           m_Arguments:
@@ -135,7 +138,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: SetSphereTarget
           m_Mode: 1
           m_Arguments:
@@ -152,7 +156,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: SetColorBlue
           m_Mode: 1
           m_Arguments:
@@ -169,7 +174,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: SetColorGreen
           m_Mode: 1
           m_Arguments:
@@ -186,7 +192,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: SetColorRed
           m_Mode: 1
           m_Arguments:
@@ -203,7 +210,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: SetColorYellow
           m_Mode: 1
           m_Arguments:
@@ -220,7 +228,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: ToLeft
           m_Mode: 1
           m_Arguments:
@@ -237,7 +246,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1467231281}
+        - m_Target: {fileID: 4306583955201330513, guid: 8d60d1c2ec227bf40ab46bf40cd8eb3b,
+            type: 3}
           m_MethodName: ToRight
           m_Mode: 1
           m_Arguments:
@@ -251,15 +261,3 @@ MonoBehaviour:
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   persistentKeywords: 1
---- !u!114 &1467231281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7570567190426136113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7898c913aba306e4ea96f7077a79658b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
