@@ -4,13 +4,6 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 
-public enum DirectionEnum
-{
-    None,
-    Left,
-    Right
-}
-
 public class SpeechManager : Singleton<SpeechManager>
 {
     [SerializeField]
@@ -27,7 +20,7 @@ public class SpeechManager : Singleton<SpeechManager>
         target.ChangeColor(color);
     }
 
-    public void Move(string targetEntity, DirectionEnum direction)
+    public void Move(string targetEntity, string direction)
     {
         var target = TargetSolver(targetEntity);
         if (target == null)
@@ -78,13 +71,12 @@ public class SpeechManager : Singleton<SpeechManager>
             default: return Color.white;
         }
     }
-    private Vector3 DirectionSolver(DirectionEnum direction)
+    private Vector3 DirectionSolver(string direction)
     {
         switch (direction)
         {
-            case DirectionEnum.None: return Vector3.zero;
-            case DirectionEnum.Left: return Vector3.left;
-            case DirectionEnum.Right: return Vector3.right;
+            case "sinistra": return Vector3.left;
+            case "destra": return Vector3.right;
             default: return Vector3.zero;
         }
     }

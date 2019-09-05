@@ -14,7 +14,7 @@ public class BuiltinSpeechManager : MonoBehaviour
     private IntentEnum intent;
     private string target;
     private string color;
-    private DirectionEnum direction;
+    private string direction;
 
     #region Intent Commands
     public void ChangeColor()
@@ -84,19 +84,19 @@ public class BuiltinSpeechManager : MonoBehaviour
     #region Direction Commands
     public void ToLeft()
     {
-        direction = DirectionEnum.Left;
+        direction = "sinistra";
         Debug.Log($"Set direction to {direction}");
         Move();
     }
     public void ToRight()
     {
-        direction = DirectionEnum.Right;
+        direction = "destra";
         Debug.Log($"Set direction to {direction}");
         Move();
     }
     private void Move()
     {
-        if (intent == IntentEnum.Move && !string.IsNullOrEmpty(target) && direction != DirectionEnum.None)
+        if (intent == IntentEnum.Move && !string.IsNullOrEmpty(target) && !string.IsNullOrEmpty(direction))
             SpeechManager.Instance.Move(target, direction);
         else
             Debug.LogWarning($"Intent or target doesn't match: Intent={intent} - Target={target} ");
