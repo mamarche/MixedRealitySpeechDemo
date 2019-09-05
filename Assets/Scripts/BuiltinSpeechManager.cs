@@ -9,7 +9,7 @@ enum IntentEnum
     Move
 }
 
-public class BuiltinSpeechManager : MonoBehaviour
+public class BuiltinSpeechManager : Singleton<BuiltinSpeechManager>
 {
     private IntentEnum intent;
     private string target;
@@ -21,11 +21,13 @@ public class BuiltinSpeechManager : MonoBehaviour
     {
         intent = IntentEnum.ChangeColor;
         Debug.Log($"Set intent to {intent}");
+        SpeechManager.Instance.Speech($"Set intent to {intent}");
     }
     public void MoveObject()
     {
         intent = IntentEnum.Move;
         Debug.Log($"Set intent to {intent}");
+        SpeechManager.Instance.Speech($"Set intent to {intent}");
     }
     #endregion
 

@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using TMPro;
+using Microsoft.CognitiveServices.Speech;
 
 public class SpeechManager : Singleton<SpeechManager>
 {
-    [SerializeField]
-    private ObjectBehaviour[] Targets;
+    [SerializeField] private ObjectBehaviour[] Targets;
+
+    [SerializeField] private string SpeechServicesSubscriptionKey = "Your Subscription Key";
+    [SerializeField] private string SpeechServicesRegion = "westeurope";
+    [SerializeField] private AudioSource audioSource;
+
+    private SpeechConfig speechConfig;
+
+    private void Start()
+    {
+        speechConfig = SpeechConfig.FromSubscription(SpeechServicesSubscriptionKey, SpeechServicesRegion);
+    }
 
     public void ChangeColor(string targetEntity, string colorEntity)
     {
@@ -29,6 +40,31 @@ public class SpeechManager : Singleton<SpeechManager>
         var movement = DirectionSolver(direction);
 
         target.Move(movement);
+    }
+
+    public void Speech(string text)
+    {
+        using (var synthsizer = new SpeechSynthesizer(speechConfig, null))
+        {
+            // Starts speech synthesis, and returns after a single utterance is synthesized.
+            var result = synthsizer.SpeakTextAsync(text).Result;
+
+            // Checks result.
+            string newMessage = string.Empty;
+            if (result.Reason == ResultReason.SynthesizingAudioCompleted)
+            {
+                var audioClip = ByteArrayToClip(result.AudioData);
+                audioSource.clip = audioClip;
+                audioSource.Play();
+
+                Debug.Log("Speech synthesis succeeded!");
+            }
+            else if (result.Reason == ResultReason.Canceled)
+            {
+                var cancellation = SpeechSynthesisCancellationDetails.FromResult(result);
+                Debug.Log($"CANCELED:\nReason=[{cancellation.Reason}]\nErrorDetails=[{cancellation.ErrorDetails}]\nDid you update the subscription info?");
+            }
+        }
     }
 
     #region Solvers
@@ -73,12 +109,32 @@ public class SpeechManager : Singleton<SpeechManager>
     }
     private Vector3 DirectionSolver(string direction)
     {
-        switch (direction)
+        switch (direction.ToLower())
         {
             case "sinistra": return Vector3.left;
             case "destra": return Vector3.right;
             default: return Vector3.zero;
         }
+    }
+    #endregion
+
+    #region Helpers
+    private AudioClip ByteArrayToClip(byte[] data)
+    {
+        // Since native playback is not yet supported on Unity yet (currently only supported on Windows/Linux Desktop),
+        // use the Unity API to play audio here as a short term solution.
+        // Native playback support will be added in the future release.
+        var sampleCount = data.Length / 2;
+        var audioData = new float[sampleCount];
+        for (var i = 0; i < sampleCount; ++i)
+        {
+            audioData[i] = (short)(data[i * 2 + 1] << 8 | data[i * 2]) / 32768.0F;
+        }
+
+        // The default output audio format is 16K 16bit mono
+        var audioClip = AudioClip.Create("SynthesizedAudio", sampleCount, 1, 16000, false);
+        audioClip.SetData(audioData, 0);
+        return audioClip;
     }
     #endregion
 }
