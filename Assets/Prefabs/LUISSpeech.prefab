@@ -43,3 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf00141e4a057a045aab7a878068a21f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LuisAppId: 
+  LuisEndpointKey: 
+  LuisRegion: westus
+  LuisLanguage: it-it

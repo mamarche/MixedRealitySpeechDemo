@@ -36,16 +36,19 @@ public class BuiltinSpeechManager : Singleton<BuiltinSpeechManager>
     {
         target = "cubo";
         Debug.Log($"Set target to {target}");
+        SpeechManager.Instance.Speech($"Set target to {target}");
     }
     public void SetCylinderTarget()
     {
         target = "cilindro";
         Debug.Log($"Set target to {target}");
+        SpeechManager.Instance.Speech($"Set target to {target}");
     }
     public void SetSphereTarget()
     {
         target = "sfera";
         Debug.Log($"Set target to {target}");
+        SpeechManager.Instance.Speech($"Set target to {target}");
     }
     #endregion
 
