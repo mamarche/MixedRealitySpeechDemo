@@ -1206,6 +1206,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LUISSpeech
       objectReference: {fileID: 0}
+    - target: {fileID: 3325539956064639631, guid: 6c673556184234a4e80f038e8385fd2f,
+        type: 3}
+      propertyPath: LuisAppId
+      value: 7ef1db2b-dd34-4165-b626-ffda9825f8d9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325539956064639631, guid: 6c673556184234a4e80f038e8385fd2f,
+        type: 3}
+      propertyPath: LuisEndpointKey
+      value: 69ce29ff0b6e42ee9b0eb3836aab375e
+      objectReference: {fileID: 0}
     - target: {fileID: 8537548729094652317, guid: 6c673556184234a4e80f038e8385fd2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1345,5 +1355,10 @@ PrefabInstance:
       propertyPath: Targets.Array.data[2]
       value: 
       objectReference: {fileID: 1987799424}
+    - target: {fileID: 7570567190426136114, guid: 3509e647c87dd174b897cf177d0e0e2d,
+        type: 3}
+      propertyPath: SpeechServicesSubscriptionKey
+      value: 09334310a35f4e8cbe987f097a60d6bb
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3509e647c87dd174b897cf177d0e0e2d, type: 3}
